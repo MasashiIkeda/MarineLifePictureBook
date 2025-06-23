@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海の生き物図鑑 - みんなで学ぼう！</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .sea-creature {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .sea-creature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .ocean-bg {
+            background: linear-gradient(180deg, #87CEEB 0%, #4682B4 50%, #191970 100%);
+        }
+        .tab-active {
+            background-color: #1e40af;
+            color: white;
+        }
+        .speaking {
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .depth-shallow { background: linear-gradient(180deg, #87CEEB 0%, #4682B4 100%); }
+        .depth-medium { background: linear-gradient(180deg, #4682B4 0%, #191970 100%); }
+        .depth-deep { background: linear-gradient(180deg, #191970 0%, #000080 100%); }
+        .depth-shore { background: linear-gradient(180deg, #F4A460 0%, #87CEEB 100%); }
+    </style>
+</head>
+<body class="ocean-bg min-h-screen">
+    <!-- ヘッダー -->
+    <header class="bg-blue-900 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-2">🌊 海の生き物図鑑 🌊</h1>
+            <p class="text-xl text-blue-200">生き物をクリックすると名前を読み上げるよ！</p>
+        </div>
+    </header>
+
+    <!-- ナビゲーションタブ -->
+    <nav class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center space-x-4 py-4">
+                <button class="tab-btn tab-active px-6 py-2 rounded-lg font-semibold transition-colors" data-tab="shallow">
+                    🏖️ 浅瀬・沿岸
+                </button>
+                <button class="tab-btn px-6 py-2 rounded-lg font-semibold transition-colors bg-gray-200 hover:bg-gray-300" data-tab="medium">
+                    🌊 中深海
+                </button>
+                <button class="tab-btn px-6 py-2 rounded-lg font-semibold transition-colors bg-gray-200 hover:bg-gray-300" data-tab="deep">
+                    🌑 深海
+                </button>
+                <button class="tab-btn px-6 py-2 rounded-lg font-semibold transition-colors bg-gray-200 hover:bg-gray-300" data-tab="shore">
+                    🏝️ 陸地・海辺
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- 浅瀬・沿岸の生き物 -->
+        <div id="shallow" class="tab-content depth-shallow rounded-xl p-6 mb-8">
+            <h2 class="text-3xl font-bold text-white text-center mb-8">🏖️ 浅瀬・沿岸の生き物</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="クマノミ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/7152594dd21043a8bda1f6d676cceec5.jpg" alt="クマノミ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-orange-600">クマノミ</h3>
+                    <p class="text-sm text-gray-600">🐠 熱帯魚</p>
+                </div>
+                
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="チョウチョウウオ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/6251b78e342c4426b589e78b23f7815e.jpg" alt="チョウチョウウオ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-yellow-600">チョウチョウウオ</h3>
+                    <p class="text-sm text-gray-600">🦋 美しい模様</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ウミガメ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/4968ce1f1b6549d18b8a2c2a1b27903c.jpg" alt="ウミガメ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-green-600">ウミガメ</h3>
+                    <p class="text-sm text-gray-600">🐢 長生き</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="カニ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/2e214ec18fa94aea9e042503ed4ae8c2.jpg" alt="カニ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-red-600">カニ</h3>
+                    <p class="text-sm text-gray-600">🦀 はさみが強い</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ヒトデ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/10f23111fcc5402190aa31407a860766.jpg" alt="ヒトデ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-purple-600">ヒトデ</h3>
+                    <p class="text-sm text-gray-600">⭐ 海の星</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="エイ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/17ce10fb70244717903d121c7688749f.jpg" alt="エイ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-blue-600">エイ</h3>
+                    <p class="text-sm text-gray-600">🥞 平たい体</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="フグ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/e16b42ab9b4e46ffa328adb12f3b9589.jpg" alt="フグ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-yellow-500">フグ</h3>
+                    <p class="text-sm text-gray-600">🐡 ふくらむ魚</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ナマコ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/faa58903a81d429296c2cd59023531ec.jpg" alt="ナマコ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-brown-600">ナマコ</h3>
+                    <p class="text-sm text-gray-600">🥒 海のきゅうり</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="イソギンチャク">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/160d722b5b004a9ebe917753f35ce43d.jpg" alt="イソギンチャク" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-pink-600">イソギンチャク</h3>
+                    <p class="text-sm text-gray-600">🌺 海の花</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ハゼ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/670e9731c42a43f0b10ceb33cb2bf013.jpg" alt="ハゼ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-gray-600">ハゼ</h3>
+                    <p class="text-sm text-gray-600">🏠 巣穴の魚</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ベラ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/6970a44181ce4272a89dd3ac2c9cda99.jpg" alt="ベラ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-green-500">ベラ</h3>
+                    <p class="text-sm text-gray-600">🌈 カラフル</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="スズメダイ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/46163e9b4d704a1d9e16284e8da675c6.jpg" alt="スズメダイ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-blue-500">スズメダイ</h3>
+                    <p class="text-sm text-gray-600">🐦 小さな魚</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="サンゴ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/e5bc7840951540e7ace25835deb378d8.jpg" alt="サンゴ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-pink-500">サンゴ</h3>
+                    <p class="text-sm text-gray-600">🪸 海の宝石</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ウニ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/c7bce978f52741bfb5da0420c6433117.jpg" alt="ウニ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-purple-700">ウニ</h3>
+                    <p class="text-sm text-gray-600">🌰 とげとげ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="オレンジクマノミ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/7152594dd21043a8bda1f6d676cceec5.jpg" alt="オレンジクマノミ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-orange-500">オレンジクマノミ</h3>
+                    <p class="text-sm text-gray-600">🐠 ニモの仲間</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="シロクマノミ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/cc4f0bac10354e02918ddeaf2339cdfd.jpg" alt="シロクマノミ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-white">シロクマノミ</h3>
+                    <p class="text-sm text-gray-600">🤍 白いクマノミ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ルリスズメダイ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/7640ef6a262448d19fcdc5d0a869899a.jpg" alt="ルリスズメダイ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-blue-600">ルリスズメダイ</h3>
+                    <p class="text-sm text-gray-600">💙 青い美魚</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="キイロハゼ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/670e9731c42a43f0b10ceb33cb2bf013.jpg" alt="キイロハゼ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-yellow-600">キイロハゼ</h3>
+                    <p class="text-sm text-gray-600">💛 黄色いハゼ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ニザダイ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/6251b78e342c4426b589e78b23f7815e.jpg" alt="ニザダイ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-gray-600">ニザダイ</h3>
+                    <p class="text-sm text-gray-600">⚫ 縞模様</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ミドリベラ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/6970a44181ce4272a89dd3ac2c9cda99.jpg" alt="ミドリベラ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-green-600">ミドリベラ</h3>
+                    <p class="text-sm text-gray-600">💚 緑色のベラ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="アオウミガメ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/8346cf22a71c4ff58327046a8a81908c.jpg" alt="アオウミガメ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-green-700">アオウミガメ</h3>
+                    <p class="text-sm text-gray-600">🌿 草食性</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="アカウミガメ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/f1a868b297b8481bbf76f37b68295e08.jpg" alt="アカウミガメ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-red-700">アカウミガメ</h3>
+                    <p class="text-sm text-gray-600">❤️ 赤い甲羅</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ハリセンボン">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/8d9a5549a2094d57a51be4a5b1f64f6b.jpg" alt="ハリセンボン" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-yellow-700">ハリセンボン</h3>
+                    <p class="text-sm text-gray-600">🦔 針だらけ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="マダコ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/00ed47d4eabd446e9eafb9fd21859393.jpg" alt="マダコ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-red-600">マダコ</h3>
+                    <p class="text-sm text-gray-600">🔴 赤いタコ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ミズダコ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/4a0140e94cc84a899daebdde5c207b0f.jpg" alt="ミズダコ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-blue-500">ミズダコ</h3>
+                    <p class="text-sm text-gray-600">🌊 大きなタコ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="トビエイ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/4866aca642464d86a560fe7416c95ea8.jpg" alt="トビエイ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-gray-600">トビエイ</h3>
+                    <p class="text-sm text-gray-600">🪂 ジャンプする</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="アカエイ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/7976b1d6696742ef8a33a5783cc20050.jpg" alt="アカエイ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-red-500">アカエイ</h3>
+                    <p class="text-sm text-gray-600">🗡️ 毒針あり</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ガンガゼ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/bad0077452b9411c918c0f9d226b9e89.jpg" alt="ガンガゼ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-black">ガンガゼ</h3>
+                    <p class="text-sm text-gray-600">🖤 黒いウニ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="バフンウニ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/6221c6d5d193492ea134ab53f66b6809.jpg" alt="バフンウニ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-brown-600">バフンウニ</h3>
+                    <p class="text-sm text-gray-600">🤎 茶色のウニ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="タテジマキンチャクダイ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/6251b78e342c4426b589e78b23f7815e.jpg" alt="タテジマキンチャクダイ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-yellow-500">タテジマキンチャクダイ</h3>
+                    <p class="text-sm text-gray-600">👗 美しい縞</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ムラサキウニ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/c7bce978f52741bfb5da0420c6433117.jpg" alt="ムラサキウニ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-purple-600">ムラサキウニ</h3>
+                    <p class="text-sm text-gray-600">💜 紫のウニ</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 中深海の生き物 -->
+        <div id="medium" class="tab-content depth-medium rounded-xl p-6 mb-8 hidden">
+            <h2 class="text-3xl font-bold text-white text-center mb-8">🌊 中深海の生き物</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="イルカ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/824715a70fcc46c88554ed8eace01d7e.jpeg" alt="イルカ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-blue-500">イルカ</h3>
+                    <p class="text-sm text-gray-600">🐬 とても賢い</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="サメ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/85140b63a4684f799935dd9f55872c6d.jpg" alt="サメ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-gray-700">サメ</h3>
+                    <p class="text-sm text-gray-600">🦈 海の王者</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="タコ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/00ed47d4eabd446e9eafb9fd21859393.jpg" alt="タコ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-red-500">タコ</h3>
+                    <p class="text-sm text-gray-600">🐙 8本の足</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="クラゲ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/a6bed18576f84ec68429ec9a0adf1bc5.jpg" alt="クラゲ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-pink-500">クラゲ</h3>
+                    <p class="text-sm text-gray-600">🎐 透明で美しい</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="マグロ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/4f44e3169ae24ed08012efa54f51b5a5.jpg" alt="マグロ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-blue-700">マグロ</h3>
+                    <p class="text-sm text-gray-600">🚀 高速で泳ぐ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="カジキ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/38dfeb0abe6d4a76a5d1813e8ce01697.jpg" alt="カジキ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-indigo-600">カジキ</h3>
+                    <p class="text-sm text-gray-600">🗡️ 長い鼻</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="マンタ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/2173f540e00448fc9d4fe4dc918e3e0c.jpg" alt="マンタ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-gray-700">マンタ</h3>
+                    <p class="text-sm text-gray-600">🦅 大きなエイ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ジンベエザメ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/6aa356b562054161850a0a96ae6b2af0.jpg" alt="ジンベエザメ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-blue-600">ジンベエザメ</h3>
+                    <p class="text-sm text-gray-600">🐋 優しい巨人</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ウツボ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/f6b3ff71d851479d986557905a1ff896.jpg" alt="ウツボ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-green-700">ウツボ</h3>
+                    <p class="text-sm text-gray-600">🐍 長い体</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="イワシ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/57ad4048e5a74c91b86a99e3fbeb40dd.jpg" alt="イワシ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-silver-600">イワシ</h3>
+                    <p class="text-sm text-gray-600">🌊 群れで泳ぐ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="アジ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/28027c6143f840f4ae07dd5be9bbc8c4.jpg" alt="アジ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-blue-600">アジ</h3>
+                    <p class="text-sm text-gray-600">🐟 身近な魚</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="サバ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/30070b92fd7d471e97b5b6edda3903a6.jpg" alt="サバ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-green-600">サバ</h3>
+                    <p class="text-sm text-gray-600">💪 栄養豊富</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="タイ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/a9ca2a7822294c5faefe4999b725e697.jpg" alt="タイ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-red-600">タイ</h3>
+                    <p class="text-sm text-gray-600">👑 めでたい魚</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ヒラメ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/5f90cc5ea55c4df093eec24c8170b6c1.jpg" alt="ヒラメ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-brown-600">ヒラメ</h3>
+                    <p class="text-sm text-gray-600">👁️ 目が左側</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="カレイ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/5fbc7e31b9c94849aa92f045d190f771.jpg" alt="カレイ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-orange-600">カレイ</h3>
+                    <p class="text-sm text-gray-600">👁️ 目が右側</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="コチ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/2bb08cb532334c0d97499f986ce6c2ef.jpg" alt="コチ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-gray-700">コチ</h3>
+                    <p class="text-sm text-gray-600">🪨 砂に隠れる</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="アナゴ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/a6bebcd92f944711a2c0db826fe2c483.jpg" alt="アナゴ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-brown-500">アナゴ</h3>
+                    <p class="text-sm text-gray-600">🌙 夜行性</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ウナギ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/f5ce85d4baeb482aa71b3d3cb59e4564.png" alt="ウナギ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-brown-600">ウナギ</h3>
+                    <p class="text-sm text-gray-600">🍱 うなぎ丼</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="イカ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/5109722d803f4906aa03016169ef3514.jpg" alt="イカ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-purple-500">イカ</h3>
+                    <p class="text-sm text-gray-600">🦑 10本の足</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 深海の生き物 -->
+        <div id="deep" class="tab-content depth-deep rounded-xl p-6 mb-8 hidden">
+            <h2 class="text-3xl font-bold text-white text-center mb-8">🌑 深海の生き物</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="アンコウ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/ecb551f1dc0d424d8ba4aa0484c67223.jpg" alt="アンコウ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-yellow-400">アンコウ</h3>
+                    <p class="text-sm text-gray-600">💡 光る深海魚</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ダイオウイカ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/78cedb2cc158481cb3fba69a378b7070.jpg" alt="ダイオウイカ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-purple-600">ダイオウイカ</h3>
+                    <p class="text-sm text-gray-600">🦑 巨大なイカ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="チョウチンアンコウ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/ab1dddac6e9e4fa78fc886c8861aef09.jpg" alt="チョウチンアンコウ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-yellow-300">チョウチンアンコウ</h3>
+                    <p class="text-sm text-gray-600">🏮 提灯で光る</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ラブカ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/a0c9b7aa176c4628aadfa3bba348487e.jpg" alt="ラブカ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-gray-500">ラブカ</h3>
+                    <p class="text-sm text-gray-600">🦈 古代のサメ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="メガマウス">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/b9a5579dfd7440b6a7774ac0fab15b10.jpg" alt="メガマウス" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-pink-600">メガマウス</h3>
+                    <p class="text-sm text-gray-600">👄 大きな口</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="グソクムシ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/16f3409a0545416dac40597097db893f.jpg" alt="グソクムシ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-gray-700">グソクムシ</h3>
+                    <p class="text-sm text-gray-600">🪲 深海の虫</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="デメニギス">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/4b67fcb257c04757ac60993e930c08f1.jpg" alt="デメニギス" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-blue-300">デメニギス</h3>
+                    <p class="text-sm text-gray-600">👀 透明な頭</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="シーラカンス">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/97af70ad80ac49b5a9246234d89ad231.jpg" alt="シーラカンス" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-blue-800">シーラカンス</h3>
+                    <p class="text-sm text-gray-600">🐟 生きた化石</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="バイカルアザラシ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/78cedb2cc158481cb3fba69a378b7070.jpg" alt="バイカルアザラシ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-gray-600">バイカルアザラシ</h3>
+                    <p class="text-sm text-gray-600">🏔️ 湖のアザラシ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="深海エビ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/e432cac6b08044c58889ef8b7b82ffeb.jpg" alt="深海エビ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-red-400">深海エビ</h3>
+                    <p class="text-sm text-gray-600">🦐 赤いエビ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ノコギリザメ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/48915530ccf14903b1598ed529d442c9.jpg" alt="ノコギリザメ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-gray-600">ノコギリザメ</h3>
+                    <p class="text-sm text-gray-600">🪚 のこぎり状</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="オオグソクムシ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/3c5e5a51354e4f139f4cef4ce5394259.jpg" alt="オオグソクムシ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-purple-700">オオグソクムシ</h3>
+                    <p class="text-sm text-gray-600">🦂 大きな虫</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ユメカサゴ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/3dee4aec469b44fab56842c0a82f27d7.jpg" alt="ユメカサゴ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-red-300">ユメカサゴ</h3>
+                    <p class="text-sm text-gray-600">💤 夢見る魚</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="フクロウナギ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/c59b821625564e69b474d9b66558cdb0.jpg" alt="フクロウナギ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-brown-400">フクロウナギ</h3>
+                    <p class="text-sm text-gray-600">🦉 大きな口</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ホウボウ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/2bb08cb532334c0d97499f986ce6c2ef.jpg" alt="ホウボウ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-red-600">ホウボウ</h3>
+                    <p class="text-sm text-gray-600">🐛 這って歩く</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="キンメダイ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/a9ca2a7822294c5faefe4999b725e697.jpg" alt="キンメダイ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-yellow-600">キンメダイ</h3>
+                    <p class="text-sm text-gray-600">👁️ 金色の目</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="オニカサゴ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/f6912f896a9942d0818795e41820cb1c.jpg" alt="オニカサゴ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-red-800">オニカサゴ</h3>
+                    <p class="text-sm text-gray-600">👹 鬼のような</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="アブラボウズ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/eba08552a850478c9528fb0153787b26.jpg" alt="アブラボウズ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-gray-800">アブラボウズ</h3>
+                    <p class="text-sm text-gray-600">🛢️ 脂肪豊富</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 陸地・海辺の生き物 -->
+        <div id="shore" class="tab-content depth-shore rounded-xl p-6 mb-8 hidden">
+            <h2 class="text-3xl font-bold text-white text-center mb-8">🏝️ 陸地・海辺の生き物</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="カニ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/2e214ec18fa94aea9e042503ed4ae8c2.jpg" alt="カニ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-red-600">カニ</h3>
+                    <p class="text-sm text-gray-600">🦀 砂浜を歩く</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ヒトデ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/10f23111fcc5402190aa31407a860766.jpg" alt="ヒトデ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-purple-600">ヒトデ</h3>
+                    <p class="text-sm text-gray-600">⭐ 岩場にいる</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ペンギン">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/2d3795711c14453cada420d0028432c6.jpg" alt="ペンギン" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-black">ペンギン</h3>
+                    <p class="text-sm text-gray-600">🐧 泳ぐ鳥</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="アザラシ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/4265ea8b9db845c9bfb1cbfa9a802e9d.jpg" alt="アザラシ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-gray-600">アザラシ</h3>
+                    <p class="text-sm text-gray-600">🦭 かわいい目</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ヤドカリ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/e432cac6b08044c58889ef8b7b82ffeb.jpg" alt="ヤドカリ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-orange-600">ヤドカリ</h3>
+                    <p class="text-sm text-gray-600">🏠 貝の家</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="オットセイ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/85d4ba80de39409cadb98cb859042841.jpg" alt="オットセイ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-brown-700">オットセイ</h3>
+                    <p class="text-sm text-gray-600">🦭 毛皮動物</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="トド">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/c37cdd79d2e14686b08a32b5b8572d48.jpg" alt="トド" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-gray-800">トド</h3>
+                    <p class="text-sm text-gray-600">🦣 大きなアザラシ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="セイウチ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/d11eed3b386e4fa7aa0c69b309722d52.jpg" alt="セイウチ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-brown-600">セイウチ</h3>
+                    <p class="text-sm text-gray-600">🗡️ 長い牙</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="コウテイペンギン">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/6ec443cd29904afd90b514a4bc83c81a.jpg" alt="コウテイペンギン" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-yellow-600">コウテイペンギン</h3>
+                    <p class="text-sm text-gray-600">👑 皇帝ペンギン</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="アデリーペンギン">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/3fb1b829664840e588096a3310dcaf03.jpg" alt="アデリーペンギン" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-blue-600">アデリーペンギン</h3>
+                    <p class="text-sm text-gray-600">💙 青い目</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="フンボルトペンギン">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/096b98f1627140f092e62cea2282c095.jpg" alt="フンボルトペンギン" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-green-600">フンボルトペンギン</h3>
+                    <p class="text-sm text-gray-600">🌿 温暖地域</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="オカヤドカリ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/dd21be63c05b427bab3f90c97a4f794e.jpg" alt="オカヤドカリ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-brown-500">オカヤドカリ</h3>
+                    <p class="text-sm text-gray-600">🏝️ 陸のヤドカリ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="スナガニ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/0a6ba26e9a5c49b7a4b931b444eb9ffa.png" alt="スナガニ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-yellow-700">スナガニ</h3>
+                    <p class="text-sm text-gray-600">🏖️ 砂浜のカニ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="イワガニ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/8e33a3df41974cf8a72a714571751ec9.jpg" alt="イワガニ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-gray-700">イワガニ</h3>
+                    <p class="text-sm text-gray-600">🪨 岩場のカニ</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="オオヒトデ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/13566689bb344c029e9f28ce14f64598.jpg" alt="オオヒトデ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-orange-700">オオヒトデ</h3>
+                    <p class="text-sm text-gray-600">⭐ 大きな星</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="アオヒトデ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/0827145f1ae04177a4864eaa8b3bb1ea.jpg" alt="アオヒトデ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-blue-700">アオヒトデ</h3>
+                    <p class="text-sm text-gray-600">💙 青い星</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="フナムシ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/faa58903a81d429296c2cd59023531ec.jpg" alt="フナムシ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-gray-600">フナムシ</h3>
+                    <p class="text-sm text-gray-600">🪲 海辺の虫</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="ハマグリ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/23485e15ece74138958ad30c5b47c3e6.jpg" alt="ハマグリ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-purple-500">ハマグリ</h3>
+                    <p class="text-sm text-gray-600">🐚 おいしい貝</p>
+                </div>
+
+                <div class="sea-creature bg-white rounded-xl p-4 shadow-lg cursor-pointer text-center" data-name="アサリ">
+                    <img src="https://public.youware.com/users-website-assets/prod/e8c8a649-f94b-40d5-8d52-07957ffe950a/6d3cd98870e9403c8f188394476a096a.jpg" alt="アサリ" class="w-full h-32 object-cover rounded-lg mb-3">
+                    <h3 class="text-lg font-bold text-brown-500">アサリ</h3>
+                    <p class="text-sm text-gray-600">🍜 味噌汁の具</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 音声読み上げ状態表示 -->
+    <div id="speech-indicator" class="fixed bottom-4 right-4 bg-blue-600 text-white p-4 rounded-full shadow-lg hidden">
+        <span class="text-lg">🔊</span>
+        <span class="ml-2">読み上げ中...</span>
+    </div>
+
+    <script>
+        // 音声合成の設定
+        function speakName(name) {
+            // 既存の音声を停止
+            window.speechSynthesis.cancel();
+            
+            // 新しい音声を作成
+            const utterance = new SpeechSynthesisUtterance(name);
+            utterance.lang = 'ja-JP';
+            utterance.rate = 0.8; // 少しゆっくり
+            utterance.pitch = 1.2; // 少し高い声
+            
+            // 音声開始時
+            utterance.onstart = function() {
+                document.getElementById('speech-indicator').classList.remove('hidden');
+                document.querySelector(`[data-name="${name}"]`).classList.add('speaking');
+            };
+            
+            // 音声終了時
+            utterance.onend = function() {
+                document.getElementById('speech-indicator').classList.add('hidden');
+                document.querySelector(`[data-name="${name}"]`).classList.remove('speaking');
+            };
+            
+            // エラー時
+            utterance.onerror = function() {
+                document.getElementById('speech-indicator').classList.add('hidden');
+                document.querySelector(`[data-name="${name}"]`).classList.remove('speaking');
+                console.log('音声読み上げに失敗しました');
+            };
+            
+            // 音声を再生
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // タブの切り替え
+        function switchTab(tabName) {
+            // 全てのタブコンテンツを非表示
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // 全てのタブボタンの状態をリセット
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('tab-active');
+                btn.classList.add('bg-gray-200', 'hover:bg-gray-300');
+            });
+            
+            // 選択されたタブを表示
+            document.getElementById(tabName).classList.remove('hidden');
+            
+            // 選択されたタブボタンを活性化
+            const activeBtn = document.querySelector(`[data-tab="${tabName}"]`);
+            activeBtn.classList.add('tab-active');
+            activeBtn.classList.remove('bg-gray-200', 'hover:bg-gray-300');
+        }
+
+        // イベントリスナーの設定
+        document.addEventListener('DOMContentLoaded', function() {
+            // 海の生き物クリック時の音声読み上げ
+            document.querySelectorAll('.sea-creature').forEach(creature => {
+                creature.addEventListener('click', function() {
+                    const name = this.dataset.name;
+                    speakName(name);
+                });
+            });
+
+            // タブボタンのクリックイベント
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tabName = this.dataset.tab;
+                    switchTab(tabName);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
